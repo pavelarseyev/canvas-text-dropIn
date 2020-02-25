@@ -8,32 +8,27 @@ window.addEventListener("resize", function() {
 //load
 window.addEventListener("load", function() {
     createCanvasText(textContainer);
+    showText(textContainer);
+});
+
+window.addEventListener("scroll", function() {
+    showText(textContainer);
 });
 
 function createCanvasText(items) {
     [...items].forEach( (item, i) => {
-        let top = item.getBoundingClientRect().top;   
+        Array.from(item.querySelectorAll(".canvas-wrapper")).forEach(i => i.remove());
 
-        if(top < window.innerHeight && top > 0 - item.offsetHeight) {    
-            Array.from(item.querySelectorAll(".canvas-wrapper")).forEach(i => i.remove());
-
-            let maxWidth = item.offsetWidth;
-            let text = item.textContent.trim();
-            let itemStyles = window.getComputedStyle(item);
-            let fontsize = itemStyles.fontSize;
-            let fontfamily = itemStyles.fontFamily;
-            let fontweight = itemStyles.fontWeight;
-            let lineheight = itemStyles.lineHeight;
-            let color = itemStyles.color;
-        
-            wrapText(item, text, maxWidth, fontfamily, fontsize, lineheight, fontweight, color);
-
-            if(!item.classList.contains("loaded")) {
-                setTimeout(function() {
-                    item.classList.add("loaded");
-                }, 0);
-            }
-        }
+        let maxWidth = item.offsetWidth;
+        let text = item.textContent.trim();
+        let itemStyles = window.getComputedStyle(item);
+        let fontsize = itemStyles.fontSize;
+        let fontfamily = itemStyles.fontFamily;
+        let fontweight = itemStyles.fontWeight;
+        let lineheight = itemStyles.lineHeight;
+        let color = itemStyles.color;
+    
+        wrapText(item, text, maxWidth, fontfamily, fontsize, lineheight, fontweight, color);
     });
 }
 
@@ -83,4 +78,14 @@ function wrapText( element, text, maxWidth, fontFamily, fontSize, lineHeight, fo
             element.appendChild(canvasWrapper);
         }
     }
+}
+
+function showText(list) {
+    [...list].forEach(item => {
+        let top = item.getBoundingClientRect().top;  
+
+        if(top < window.innerHeight * 0.66) {
+            item.classList.add("loaded");
+        }
+    });
 }
