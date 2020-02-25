@@ -9,6 +9,7 @@
 
 body {
     overflow-x: hidden;
+    color: tomato;
 }
 
 .container {
@@ -20,10 +21,11 @@ body {
 
 .hero {
     min-height: 100vh;
+    padding: 100px 0;
     display: flex;
     align-items: center;
     width: 100%;
-    background-color: tomato;  
+    background-color: white;  
 }
 
 .holder {
@@ -44,19 +46,22 @@ h1 {
 }
 
 .canvas-text {
-    color: transparent;
     position: relative;
     overflow: hidden;
 }
 
 .canvas-text::selection {
-    background-color: rgba(255, 255, 255, .3);
-    color: transparent;
+    background-color: rgba(0,0,0, .2);
+    text-shadow: 0 0 10px white;
+}
+
+.canvas-text:nth-of-type(even) {
+    text-align: center;
 }
 
 hr {
     border: none;
-    padding: 50vh 0;
+    padding: 30vh 0;
 }
 
 .canvas-text.loaded .canvas-wrapper canvas {
@@ -77,5 +82,5 @@ hr {
 .canvas-text canvas {
     display: block;
     transform: translateY(100%);
-    transition: transform 0.7s;
+    transition: transform .4s;
 }
