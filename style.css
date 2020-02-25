@@ -49,6 +49,11 @@ h1 {
     overflow: hidden;
 }
 
+.canvas-text::selection {
+    background-color: rgba(255, 255, 255, .3);
+    color: transparent;
+}
+
 hr {
     border: none;
     padding: 50vh 0;
