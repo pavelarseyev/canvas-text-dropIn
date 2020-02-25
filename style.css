@@ -1,86 +1,95 @@
-*, *::after, *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    list-style: none;
-    outline: none;
-    text-decoration: none;
+*,
+::after,
+::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+	outline: 0;
+	text-decoration: none;
 }
-
 body {
     overflow-x: hidden;
     color: tomato;
 }
-
 .container {
-    width: 100%;
-    padding: 0 20px;
-    max-width: 1610px;
-    margin: 0 auto;
+	width: 100%;
+	padding: 0 20px;
+	max-width: 1610px;
+	margin: 0 auto;
 }
-
 .hero {
-    min-height: 100vh;
-    padding: 100px 0;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    background-color: white;  
+	min-height: 100vh;
+	padding: 100px 0;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	background-color: #fff;
 }
-
 .holder {
-    font-weight: bold;
-    font-size: 22px;
-    line-height: 32px;
+	font-weight: 700;
+	font-size: 22px;
+	line-height: 32px;
 }
-
 @media (min-width: 1200px) {
-    .holder {
-        font-size: 36px;
-        line-height: 52px;
-    }
+	.holder {
+		font-size: 36px;
+		line-height: 52px;
+	}
 }
-
 h1 {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
-
 .canvas-text {
-    position: relative;
-    overflow: hidden;
+	position: relative;
+	overflow: hidden;
 }
-
 .canvas-text::selection {
-    background-color: rgba(0,0,0, .2);
-    text-shadow: 0 0 10px white;
+	background-color: rgba(0, 0, 0, 0.2);
+	text-shadow: 0 0 10px #fff;
 }
-
 .canvas-text:nth-of-type(even) {
-    text-align: center;
+	text-align: center;
 }
-
 hr {
-    border: none;
-    padding: 30vh 0;
+	border: none;
+	padding: 30vh 0;
 }
-
 .canvas-text.loaded .canvas-wrapper canvas {
-    transform: translateY(0);
+	transform: translateY(0);
 }
-
 .canvas-text:last-child {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
-
 .canvas-text .canvas-wrapper {
-    position: absolute;
-    display: block;
-    pointer-events: none;
-    overflow: hidden;
+	position: absolute;
+	display: block;
+	pointer-events: none;
+	overflow: hidden;
+}
+.canvas-text canvas {
+	display: block;
+	transform: translateY(100%);
+	transition: transform 0.4s;
 }
 
-.canvas-text canvas {
-    display: block;
-    transform: translateY(100%);
-    transition: transform .4s;
+.scroll-arrow {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: solid tomato;
+    border-width: 0 2px 2px 0;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.scroll-arrow::before {
+    content: "sroll down";
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform-origin: 100% 200%;
+    transform: translateX(-50%) rotate(-45deg);
+    white-space: nowrap;
 }

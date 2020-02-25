@@ -10,7 +10,7 @@ window.addEventListener("load", function() {
     createCanvasText(textContainer);
     setTimeout(function() {
         showText(textContainer);
-    });
+    }, 100);
 });
 
 //scroll
@@ -26,14 +26,14 @@ function createCanvasText(items) {
 
 function wrapText(item) {
     Array.from(item.querySelectorAll(".canvas-wrapper")).forEach(i => i.remove());
-    let text = item.textContent.trim();
     let itemStyles = window.getComputedStyle(item);
+    let color = getItemsColor(item, itemStyles);        
+    let text = item.textContent.trim();
     let fontsize = itemStyles.fontSize;
     let fontfamily = itemStyles.fontFamily;
     let fontweight = itemStyles.fontWeight;
     let lineheight = parseInt(itemStyles.lineHeight);
     let textalign = itemStyles.textAlign;
-    let color = getItemsColor(item, itemStyles);        
 
     let canvasWrapper = document.createElement("div");
     canvasWrapper.classList.add("canvas-wrapper");
@@ -96,9 +96,15 @@ function showText(itemsList) {
 }
 
 function getItemsColor(item, itemStyles) {
-    let color = itemStyles.color;
-    item.style.color = "transparent";
-    item.setAttribute("data-color", color);
-
-    return color;
+    let color;
+    
+    if(!item.getAttribute("data-color")){
+        color = itemStyles.color;
+        item.style.color = "transparent";
+        item.setAttribute("data-color", color);
+    } else {
+        color = item.getAttribute("data-color");
+    }
+    
+    return color || false;
 } 
