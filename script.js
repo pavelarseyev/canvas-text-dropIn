@@ -38,8 +38,6 @@ function wrapText(item) {
     let canvasWrapper = document.createElement("div");
     canvasWrapper.classList.add("canvas-wrapper");
 
-    //key check
-
     let canvas = document.createElement("canvas");
     
     let ctx = canvas.getContext("2d");
